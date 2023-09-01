@@ -60,3 +60,4 @@
 <center><b><font size='2'>微服务的服务封装和组合方式</font></b></center>
 
 ## 代码详解
+![微服务的服务调用关系](../../image/05-ddd代码结构.png)
