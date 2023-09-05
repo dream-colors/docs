@@ -20,13 +20,20 @@
 <center><b><font size='2'>三层架构与DDD四层架构的比较和关系</font></b></center>
 
 ## 代码模型
+![微服务的服务调用关系](../../image/05-ddd代码结构.png)
 - **interfaces** (用户接口层)
+  > 与适配层同属一层，但是为了其它微服务使用，提高代码复用效率，可单独抽成一个api模块使用；为适配层和应用层提供数据服务
+  - **dto**：前端运用数据载体，不实现任何业务逻辑。
+  - **facade**：封装应用服务，提供较粗粒度的调用接口。
+
+- **adapter** (适配层)
   
-  - **assembler**: &nbsp;实现DTO和DO领域对象之间的相互转换和数据转换。
-  - **dto**: &nbsp;前端运用数据载体，不实现任何业务逻辑。
-  - **facade**: &nbsp;封装应用服务，提供较粗粒度的调用接口。
+  - **assembler**：实现DTO和DO领域对象之间的相互转换和数据转换。
+  - **controller**：控制层，实现对web、api接口的实现
   
 - **application** (应用层)
+
+  - **acl**：防腐接口层，接入其它微服务接口，实现在基础设施层
 
   - **event**：事件
     - **publish**： 事件发布。
@@ -45,7 +52,7 @@
   
 - **infrastructure** (基础层)
   - **config**：存放配置相关的代码
-  - **acl**：防腐层，接入其他微服务代码
+  - **acl**：防腐实现层，接入其他微服务代码
   - **util**：存放平台、开发框架、消息、数据库、缓存、文件、总线、网关、第三方类库和通用算法的基础代码。
   - **repository**: 仓储层
     - **impl**: 领域层仓储实现
@@ -60,4 +67,4 @@
 <center><b><font size='2'>微服务的服务封装和组合方式</font></b></center>
 
 ## 代码详解
-![微服务的服务调用关系](../../image/05-ddd代码结构.png)
+<https://github.com/dream-colors/meteor-code-ddd/tree/master/src/main/java/com/meteor/ddd>
